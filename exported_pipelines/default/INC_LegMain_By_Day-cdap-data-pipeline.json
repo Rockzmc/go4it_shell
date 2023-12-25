@@ -1,0 +1,152 @@
+{
+    "artifact": {
+        "name": "cdap-data-pipeline",
+        "scope": "SYSTEM",
+        "version": "6.7.3"
+    },
+    "config": {
+        "comments": [],
+        "connections": [
+            {
+                "from": "Legmain",
+                "to": "Wrangler"
+            },
+            {
+                "from": "Wrangler",
+                "to": "BigQuery"
+            }
+        ],
+        "driverResources": {
+            "memoryMB": 2048.0,
+            "virtualCores": 1.0
+        },
+        "engine": "spark",
+        "maxConcurrentRuns": 1.0,
+        "numOfRecordsPreview": 100.0,
+        "postActions": [],
+        "processTimingEnabled": true,
+        "properties": {},
+        "rangeRecordsPreview": {
+            "max": "5000",
+            "min": 1.0
+        },
+        "resources": {
+            "memoryMB": 2048.0,
+            "virtualCores": 1.0
+        },
+        "schedule": "0 1 */1 * *",
+        "stageLoggingEnabled": false,
+        "stages": [
+            {
+                "id": "Legmain",
+                "name": "Legmain",
+                "outputSchema": [
+                    {
+                        "name": "etlSchemaBody",
+                        "schema": "{\"type\":\"record\",\"name\":\"outputSchema\",\"fields\":[{\"name\":\"DAY\",\"type\":\"int\"},{\"name\":\"DEP\",\"type\":\"string\"},{\"name\":\"CARRIER\",\"type\":\"int\"},{\"name\":\"FLT\",\"type\":\"int\"},{\"name\":\"LEGCD\",\"type\":\"string\"},{\"name\":\"CANCELLED\",\"type\":\"int\"},{\"name\":\"ORDER_\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADATE\",\"type\":\"int\"},{\"name\":\"AROUTE\",\"type\":\"long\"},{\"name\":\"ARR\",\"type\":[\"string\",\"null\"]},{\"name\":\"REG\",\"type\":\"string\"},{\"name\":\"AC\",\"type\":\"int\"},{\"name\":\"ACDUTY\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTYPE\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGSTATUS\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTCAT\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"STD\",\"type\":[\"int\",\"null\"]},{\"name\":\"STA\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTD\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTA\",\"type\":[\"int\",\"null\"]},{\"name\":\"DDLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGREG\",\"type\":[\"string\",\"null\"]},{\"name\":\"SCOMPLIX\",\"type\":[\"int\",\"null\"]},{\"name\":\"SEATS\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"ACCONFIG\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"SEATFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"PIC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ARCID\",\"type\":[\"string\",\"null\"]},{\"name\":\"DO_NOT_CHANGE\",\"type\":[\"int\",\"null\"]},{\"name\":\"BC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ACO\",\"type\":[\"int\",\"null\"]},{\"name\":\"FDO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CCO\",\"type\":[\"int\",\"null\"]},{\"name\":\"ODD\",\"type\":[\"int\",\"null\"]},{\"name\":\"RTL\",\"type\":[\"int\",\"null\"]},{\"name\":\"QUOTNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"AAREPFLAG\",\"type\":[\"int\",\"null\"]},{\"name\":\"MISSION\",\"type\":[\"string\",\"null\"]},{\"name\":\"CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"PLAN_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"CREW_REL_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"UPDDATE\",\"type\":[\"int\",\"null\"]},{\"name\":\"UPDTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"COSMICRADIATION\",\"type\":[\"float\",\"null\"]},{\"name\":\"ORGCARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEASEIND\",\"type\":[\"int\",\"null\"]},{\"name\":\"DEPTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"ARRTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"TRAFFICLIM\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_CARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_FLT\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_LEGCD\",\"type\":[\"string\",\"null\"]},{\"name\":\"ONWARD_LAYOVER\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"AWARDNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CNXREASON\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS2\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGMAINFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"SCHEDULEDOPS\",\"type\":[\"int\",\"null\"]},{\"name\":\"RETRIVAL_TIMESTAMP\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}}]}"
+                    }
+                ],
+                "plugin": {
+                    "artifact": {
+                        "name": "database-plugins",
+                        "scope": "SYSTEM",
+                        "version": "2.9.3"
+                    },
+                    "label": "Legmain",
+                    "name": "Database",
+                    "properties": {
+                        "columnNameCase": "No change",
+                        "connectionString": "jdbc:sqlserver://${secure(flightnet_host)}:${secure(aims_port)};databaseName=${secure(aims_database)}",
+                        "enableAutoCommit": "false",
+                        "fetchSize": "1000",
+                        "importQuery": "SELECT *, current_timestamp as RETRIVAL_TIMESTAMP FROM Legmain\r\nWHERE $CONDITIONS AND\r\n (UpdDate = 0 OR \r\n  UpdDate > DATEDIFF(DAY,  Convert(DATETIME, '1980-01-01'), /* yesterday */DATEADD(day, -1, CAST(GETDATE() AS date)))\r\n )",
+                        "jdbcPluginName": "mssqlserver",
+                        "jdbcPluginType": "jdbc",
+                        "numSplits": "1",
+                        "password": "${secure(aims_password)}",
+                        "referenceName": "Legmain_XM",
+                        "schema": "{\"type\":\"record\",\"name\":\"outputSchema\",\"fields\":[{\"name\":\"DAY\",\"type\":\"int\"},{\"name\":\"DEP\",\"type\":\"string\"},{\"name\":\"CARRIER\",\"type\":\"int\"},{\"name\":\"FLT\",\"type\":\"int\"},{\"name\":\"LEGCD\",\"type\":\"string\"},{\"name\":\"CANCELLED\",\"type\":\"int\"},{\"name\":\"ORDER_\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADATE\",\"type\":\"int\"},{\"name\":\"AROUTE\",\"type\":\"long\"},{\"name\":\"ARR\",\"type\":[\"string\",\"null\"]},{\"name\":\"REG\",\"type\":\"string\"},{\"name\":\"AC\",\"type\":\"int\"},{\"name\":\"ACDUTY\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTYPE\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGSTATUS\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTCAT\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"STD\",\"type\":[\"int\",\"null\"]},{\"name\":\"STA\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTD\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTA\",\"type\":[\"int\",\"null\"]},{\"name\":\"DDLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGREG\",\"type\":[\"string\",\"null\"]},{\"name\":\"SCOMPLIX\",\"type\":[\"int\",\"null\"]},{\"name\":\"SEATS\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"ACCONFIG\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"SEATFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"PIC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ARCID\",\"type\":[\"string\",\"null\"]},{\"name\":\"DO_NOT_CHANGE\",\"type\":[\"int\",\"null\"]},{\"name\":\"BC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ACO\",\"type\":[\"int\",\"null\"]},{\"name\":\"FDO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CCO\",\"type\":[\"int\",\"null\"]},{\"name\":\"ODD\",\"type\":[\"int\",\"null\"]},{\"name\":\"RTL\",\"type\":[\"int\",\"null\"]},{\"name\":\"QUOTNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"AAREPFLAG\",\"type\":[\"int\",\"null\"]},{\"name\":\"MISSION\",\"type\":[\"string\",\"null\"]},{\"name\":\"CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"PLAN_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"CREW_REL_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"UPDDATE\",\"type\":[\"int\",\"null\"]},{\"name\":\"UPDTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"COSMICRADIATION\",\"type\":[\"float\",\"null\"]},{\"name\":\"ORGCARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEASEIND\",\"type\":[\"int\",\"null\"]},{\"name\":\"DEPTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"ARRTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"TRAFFICLIM\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_CARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_FLT\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_LEGCD\",\"type\":[\"string\",\"null\"]},{\"name\":\"ONWARD_LAYOVER\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"AWARDNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CNXREASON\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS2\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGMAINFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"SCHEDULEDOPS\",\"type\":[\"int\",\"null\"]},{\"name\":\"RETRIVAL_TIMESTAMP\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}}]}",
+                        "transactionIsolationLevel": "TRANSACTION_SERIALIZABLE",
+                        "useConnection": "false",
+                        "user": "${secure(aims_username)}"
+                    },
+                    "type": "batchsource"
+                }
+            },
+            {
+                "id": "Wrangler",
+                "inputSchema": [
+                    {
+                        "name": "Legmain",
+                        "schema": "{\"type\":\"record\",\"name\":\"outputSchema\",\"fields\":[{\"name\":\"DAY\",\"type\":\"int\"},{\"name\":\"DEP\",\"type\":\"string\"},{\"name\":\"CARRIER\",\"type\":\"int\"},{\"name\":\"FLT\",\"type\":\"int\"},{\"name\":\"LEGCD\",\"type\":\"string\"},{\"name\":\"CANCELLED\",\"type\":\"int\"},{\"name\":\"ORDER_\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADATE\",\"type\":\"int\"},{\"name\":\"AROUTE\",\"type\":\"long\"},{\"name\":\"ARR\",\"type\":[\"string\",\"null\"]},{\"name\":\"REG\",\"type\":\"string\"},{\"name\":\"AC\",\"type\":\"int\"},{\"name\":\"ACDUTY\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTYPE\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGSTATUS\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTCAT\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"STD\",\"type\":[\"int\",\"null\"]},{\"name\":\"STA\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTD\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTA\",\"type\":[\"int\",\"null\"]},{\"name\":\"DDLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGREG\",\"type\":[\"string\",\"null\"]},{\"name\":\"SCOMPLIX\",\"type\":[\"int\",\"null\"]},{\"name\":\"SEATS\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"ACCONFIG\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"SEATFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"PIC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ARCID\",\"type\":[\"string\",\"null\"]},{\"name\":\"DO_NOT_CHANGE\",\"type\":[\"int\",\"null\"]},{\"name\":\"BC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ACO\",\"type\":[\"int\",\"null\"]},{\"name\":\"FDO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CCO\",\"type\":[\"int\",\"null\"]},{\"name\":\"ODD\",\"type\":[\"int\",\"null\"]},{\"name\":\"RTL\",\"type\":[\"int\",\"null\"]},{\"name\":\"QUOTNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"AAREPFLAG\",\"type\":[\"int\",\"null\"]},{\"name\":\"MISSION\",\"type\":[\"string\",\"null\"]},{\"name\":\"CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"PLAN_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"CREW_REL_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"UPDDATE\",\"type\":[\"int\",\"null\"]},{\"name\":\"UPDTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"COSMICRADIATION\",\"type\":[\"float\",\"null\"]},{\"name\":\"ORGCARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEASEIND\",\"type\":[\"int\",\"null\"]},{\"name\":\"DEPTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"ARRTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"TRAFFICLIM\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_CARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_FLT\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_LEGCD\",\"type\":[\"string\",\"null\"]},{\"name\":\"ONWARD_LAYOVER\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"AWARDNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CNXREASON\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS2\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGMAINFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"SCHEDULEDOPS\",\"type\":[\"int\",\"null\"]},{\"name\":\"RETRIVAL_TIMESTAMP\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}}]}"
+                    }
+                ],
+                "name": "Wrangler",
+                "outputSchema": [
+                    {
+                        "name": "etlSchemaBody",
+                        "schema": "{\"type\":\"record\",\"name\":\"outputSchema\",\"fields\":[{\"name\":\"DAY\",\"type\":\"int\"},{\"name\":\"DEP\",\"type\":\"string\"},{\"name\":\"CARRIER\",\"type\":\"int\"},{\"name\":\"FLT\",\"type\":\"int\"},{\"name\":\"LEGCD\",\"type\":\"string\"},{\"name\":\"CANCELLED\",\"type\":\"int\"},{\"name\":\"ORDER_\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADATE\",\"type\":\"int\"},{\"name\":\"AROUTE\",\"type\":\"long\"},{\"name\":\"ARR\",\"type\":[\"string\",\"null\"]},{\"name\":\"REG\",\"type\":\"string\"},{\"name\":\"AC\",\"type\":\"int\"},{\"name\":\"ACDUTY\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTYPE\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGSTATUS\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTCAT\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"STD\",\"type\":[\"int\",\"null\"]},{\"name\":\"STA\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTD\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTA\",\"type\":[\"int\",\"null\"]},{\"name\":\"DDLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGREG\",\"type\":[\"string\",\"null\"]},{\"name\":\"SCOMPLIX\",\"type\":[\"int\",\"null\"]},{\"name\":\"SEATS\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"ACCONFIG\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"SEATFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"PIC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ARCID\",\"type\":[\"string\",\"null\"]},{\"name\":\"DO_NOT_CHANGE\",\"type\":[\"int\",\"null\"]},{\"name\":\"BC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ACO\",\"type\":[\"int\",\"null\"]},{\"name\":\"FDO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CCO\",\"type\":[\"int\",\"null\"]},{\"name\":\"ODD\",\"type\":[\"int\",\"null\"]},{\"name\":\"RTL\",\"type\":[\"int\",\"null\"]},{\"name\":\"QUOTNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"AAREPFLAG\",\"type\":[\"int\",\"null\"]},{\"name\":\"MISSION\",\"type\":[\"string\",\"null\"]},{\"name\":\"CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"PLAN_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"CREW_REL_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"UPDDATE\",\"type\":[\"int\",\"null\"]},{\"name\":\"UPDTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"COSMICRADIATION\",\"type\":[\"float\",\"null\"]},{\"name\":\"ORGCARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEASEIND\",\"type\":[\"int\",\"null\"]},{\"name\":\"DEPTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"ARRTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"TRAFFICLIM\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_CARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_FLT\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_LEGCD\",\"type\":[\"string\",\"null\"]},{\"name\":\"ONWARD_LAYOVER\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"AWARDNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CNXREASON\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS2\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGMAINFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"SCHEDULEDOPS\",\"type\":[\"int\",\"null\"]},{\"name\":\"RETRIVAL_TIMESTAMP\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}}]}"
+                    }
+                ],
+                "plugin": {
+                    "artifact": {
+                        "name": "wrangler-transform",
+                        "scope": "SYSTEM",
+                        "version": "4.7.3"
+                    },
+                    "label": "Wrangler",
+                    "name": "Wrangler",
+                    "properties": {
+                        "field": "*",
+                        "on-error": "fail-pipeline",
+                        "precondition": "false",
+                        "schema": "{\"type\":\"record\",\"name\":\"outputSchema\",\"fields\":[{\"name\":\"DAY\",\"type\":\"int\"},{\"name\":\"DEP\",\"type\":\"string\"},{\"name\":\"CARRIER\",\"type\":\"int\"},{\"name\":\"FLT\",\"type\":\"int\"},{\"name\":\"LEGCD\",\"type\":\"string\"},{\"name\":\"CANCELLED\",\"type\":\"int\"},{\"name\":\"ORDER_\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADATE\",\"type\":\"int\"},{\"name\":\"AROUTE\",\"type\":\"long\"},{\"name\":\"ARR\",\"type\":[\"string\",\"null\"]},{\"name\":\"REG\",\"type\":\"string\"},{\"name\":\"AC\",\"type\":\"int\"},{\"name\":\"ACDUTY\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTYPE\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGSTATUS\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTCAT\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"STD\",\"type\":[\"int\",\"null\"]},{\"name\":\"STA\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTD\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTA\",\"type\":[\"int\",\"null\"]},{\"name\":\"DDLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGREG\",\"type\":[\"string\",\"null\"]},{\"name\":\"SCOMPLIX\",\"type\":[\"int\",\"null\"]},{\"name\":\"SEATS\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"ACCONFIG\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"SEATFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"PIC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ARCID\",\"type\":[\"string\",\"null\"]},{\"name\":\"DO_NOT_CHANGE\",\"type\":[\"int\",\"null\"]},{\"name\":\"BC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ACO\",\"type\":[\"int\",\"null\"]},{\"name\":\"FDO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CCO\",\"type\":[\"int\",\"null\"]},{\"name\":\"ODD\",\"type\":[\"int\",\"null\"]},{\"name\":\"RTL\",\"type\":[\"int\",\"null\"]},{\"name\":\"QUOTNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"AAREPFLAG\",\"type\":[\"int\",\"null\"]},{\"name\":\"MISSION\",\"type\":[\"string\",\"null\"]},{\"name\":\"CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"PLAN_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"CREW_REL_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"UPDDATE\",\"type\":[\"int\",\"null\"]},{\"name\":\"UPDTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"COSMICRADIATION\",\"type\":[\"float\",\"null\"]},{\"name\":\"ORGCARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEASEIND\",\"type\":[\"int\",\"null\"]},{\"name\":\"DEPTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"ARRTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"TRAFFICLIM\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_CARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_FLT\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_LEGCD\",\"type\":[\"string\",\"null\"]},{\"name\":\"ONWARD_LAYOVER\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"AWARDNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CNXREASON\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS2\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGMAINFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"SCHEDULEDOPS\",\"type\":[\"int\",\"null\"]},{\"name\":\"RETRIVAL_TIMESTAMP\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}}]}"
+                    },
+                    "type": "transform"
+                }
+            },
+            {
+                "id": "BigQuery",
+                "inputSchema": [
+                    {
+                        "name": "Wrangler",
+                        "schema": "{\"type\":\"record\",\"name\":\"outputSchema\",\"fields\":[{\"name\":\"DAY\",\"type\":\"int\"},{\"name\":\"DEP\",\"type\":\"string\"},{\"name\":\"CARRIER\",\"type\":\"int\"},{\"name\":\"FLT\",\"type\":\"int\"},{\"name\":\"LEGCD\",\"type\":\"string\"},{\"name\":\"CANCELLED\",\"type\":\"int\"},{\"name\":\"ORDER_\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADATE\",\"type\":\"int\"},{\"name\":\"AROUTE\",\"type\":\"long\"},{\"name\":\"ARR\",\"type\":[\"string\",\"null\"]},{\"name\":\"REG\",\"type\":\"string\"},{\"name\":\"AC\",\"type\":\"int\"},{\"name\":\"ACDUTY\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTYPE\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGSTATUS\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLTCAT\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"STD\",\"type\":[\"int\",\"null\"]},{\"name\":\"STA\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTD\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGSTA\",\"type\":[\"int\",\"null\"]},{\"name\":\"DDLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ADLY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ORGREG\",\"type\":[\"string\",\"null\"]},{\"name\":\"SCOMPLIX\",\"type\":[\"int\",\"null\"]},{\"name\":\"SEATS\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"ACCONFIG\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"SEATFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"PIC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ARCID\",\"type\":[\"string\",\"null\"]},{\"name\":\"DO_NOT_CHANGE\",\"type\":[\"int\",\"null\"]},{\"name\":\"BC\",\"type\":[\"int\",\"null\"]},{\"name\":\"ACO\",\"type\":[\"int\",\"null\"]},{\"name\":\"FDO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CCO\",\"type\":[\"int\",\"null\"]},{\"name\":\"ODD\",\"type\":[\"int\",\"null\"]},{\"name\":\"RTL\",\"type\":[\"int\",\"null\"]},{\"name\":\"QUOTNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"AAREPFLAG\",\"type\":[\"int\",\"null\"]},{\"name\":\"MISSION\",\"type\":[\"string\",\"null\"]},{\"name\":\"CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"PLAN_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"CREW_REL_CHANGE_REASON\",\"type\":[\"bytes\",\"null\"]},{\"name\":\"UPDDATE\",\"type\":[\"int\",\"null\"]},{\"name\":\"UPDTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"COSMICRADIATION\",\"type\":[\"float\",\"null\"]},{\"name\":\"ORGCARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEASEIND\",\"type\":[\"int\",\"null\"]},{\"name\":\"DEPTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"ARRTERM\",\"type\":[\"string\",\"null\"]},{\"name\":\"TRAFFICLIM\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_CARRIER\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_FLT\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONWARD_LEGCD\",\"type\":[\"string\",\"null\"]},{\"name\":\"ONWARD_LAYOVER\",\"type\":[\"int\",\"null\"]},{\"name\":\"FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"AWARDNO\",\"type\":[\"int\",\"null\"]},{\"name\":\"CNXREASON\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONDAY\",\"type\":[\"int\",\"null\"]},{\"name\":\"ONTIME\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"VP_FLAGS2\",\"type\":[\"int\",\"null\"]},{\"name\":\"LEGMAINFLAGS\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAPR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR10\",\"type\":[\"int\",\"null\"]},{\"name\":\"EASAERR2\",\"type\":[\"int\",\"null\"]},{\"name\":\"SCHEDULEDOPS\",\"type\":[\"int\",\"null\"]},{\"name\":\"RETRIVAL_TIMESTAMP\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}}]}"
+                    }
+                ],
+                "name": "BigQuery",
+                "outputSchema": [
+                    {
+                        "name": "etlSchemaBody",
+                        "schema": ""
+                    }
+                ],
+                "plugin": {
+                    "artifact": {
+                        "name": "google-cloud",
+                        "scope": "SYSTEM",
+                        "version": "0.20.5"
+                    },
+                    "label": "BigQuery",
+                    "name": "BigQueryTable",
+                    "properties": {
+                        "allowSchemaRelaxation": "false",
+                        "connection": "${conn(AIMS_Dev)}",
+                        "createPartitionedTable": "false",
+                        "dataset": "AIMS_Dev",
+                        "location": "US",
+                        "operation": "upsert",
+                        "partitionFilterRequired": "false",
+                        "partitioningType": "TIME",
+                        "referenceName": "Legmain",
+                        "relationTableKey": "DAY,DEP,CARRIER,FLT,LEGCD",
+                        "table": "legMain",
+                        "useConnection": "true"
+                    },
+                    "type": "batchsink"
+                }
+            }
+        ]
+    },
+    "description": "Data Pipeline Application",
+    "name": "INC_LegMain_By_Day"
+}
