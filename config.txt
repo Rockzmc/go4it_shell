@@ -1,0 +1,7 @@
+[default]
+pipelines_list_path=/home/name/source_repos/dml-datafusion-prod-deploy/exported_pipelines/default
+
+[datafusion]
+project-id=go4it-test
+location=asia-east2
+instance-id=demo673
